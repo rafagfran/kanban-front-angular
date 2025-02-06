@@ -1,0 +1,38 @@
+<div class="flex">
+  <header class="md:hidden p-4">
+    <button>
+      <icon-menu></icon-menu>
+    </button>
+  </header>
+  <aside class="hidden md:block w-24 h-screen bg-sidebar p-4">
+  </aside>
+
+  <main class="flex-1 pl-8 py-8 flex gap-8 bg-board-background ">
+    <div class="bg-card rounded-xl p-4  w-[272px]">
+      <h2>TO-DO</h2>
+
+      <div
+        class="rounded-md p-2 border-b border-gray-300 bg-background shadow-xs"
+        cdkDropList [cdkDropListData]="todo"
+        (cdkDropListDropped)="drop($event)"
+        #todoList="cdkDropList"
+        [cdkDropListConnectedTo]="[doneList]"
+      >
+        @for (item of todo; track item) {
+        <div class="" cdkDrag>{{item}}</div>
+        }
+      </div>
+    </div>
+
+    <div class="bg-card rounded-xl p-4 shadow-md w-[272px]">
+      <h2>Done</h2>
+
+      <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)"
+        [cdkDropListConnectedTo]="[todoList]" #doneList="cdkDropList">
+        @for (item of done; track item) {
+        <div class="" cdkDrag>{{item}}</div>
+        }
+      </div>
+    </div>
+  </main>
+</div>

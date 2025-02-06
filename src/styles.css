@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 @theme {
-	--color-primary: oklch(55.95% 0.2419932443429651 266.9376852049028);
-	--color-background: oklch(98.16% 0.0017 247.84);
-	--color-card: oklch(96.1% 0.0029 264.54);
-	--color-sidebar: oklch(98.16% 0.0017 247.84);
-	--color-board-background: oklch(47.92% 0.0427 259.73);
-
-	--animate-fadeIn: fadeIn 0.35s ease-in-out;
-	--animate-fadeOut: fadeOut 0.35s ease-in-out;
+	--color-primary: oklch(53.32% 0.2596 262.64);
+	--color-primary-accent: oklch(63.93% 0.1947 257.88);
+	--color-background: oklch(19.09% 0.0087 264.35);
+	--color-card-background: oklch(26.71% 0.0126 258.37);
+	--color-border: oklch(31.47% 0.0166 255.64);
+	--color-primary-foreground: oklch(100% 0 0);
+	--color-secondary-foreground: oklch(76.68% 0 0);
+	--color-board-surface: oklch(22.98% 0.0107 260.68);
 
 	@keyframes fadeIn {
 		0% {
@@ -19,6 +19,7 @@
 			opacity: 1;
 		}
 	}
+
 	@keyframes fadeOut {
 		0% {
 			opacity: 1;
@@ -28,6 +29,26 @@
 		}
 	}
 }
+/*
+.light {
+	--color-primary: oklch(53.32% 0.2596 262.64);
+	--color-primary-accent: oklch(62.57% 0.2051 254.88);
+	--color-background: oklch(96.33% 0.0074 260.73);
+	--color-card-background: oklch(100% 0 0);
+	--color-border: oklch(87.68% 0.0157 257.2);
+	--color-primary-foreground: oklch(21.78% 0 0);
+	--color-secondary-foreground: oklch(42.76% 0 0);
+}
+
+.dark {
+	--color-primary: oklch(53.32% 0.2596 262.64);
+	--color-primary-accent: oklch(63.93% 0.1947 257.88);
+	--color-background: oklch(19.09% 0.0087 264.35);
+	--color-card-background: oklch(26.71% 0.0126 258.37);
+	--color-border: oklch(31.47% 0.0166 255.64);
+	--color-primary-foreground: oklch(100% 0 0);
+	--color-secondary-foreground: oklch(76.68% 0 0);
+} */
 
 @utility container {
 	margin-inline: auto;
@@ -43,11 +64,13 @@
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+		border-color: var(--color-border);
 	}
 
 	body {
 		background-color: var(--color-background);
 		font-family: "Inter", sans-serif;
+		color: var(--color-primary-foreground);
 	}
 
 	a {

@@ -3,36 +3,19 @@ import {
 	type CdkDragDrop,
 	CdkDropList,
 	moveItemInArray,
-	transferArrayItem,
 } from "@angular/cdk/drag-drop";
-import { Component } from "@angular/core";
-import { IconMenu } from "../../../svg/icons/menu.component";
-
+import { Component, Output } from "@angular/core";
+import { BoardColumnComponent } from "./components/board-column/board-column.component";
+import { BoardHeaderComponent } from "./components/board-header/board-header.component";
 @Component({
 	selector: "app-board-layout",
-	imports: [CdkDropList, CdkDrag, IconMenu],
+	imports: [CdkDropList, CdkDrag, BoardColumnComponent, BoardHeaderComponent],
 	templateUrl: "./board.component.html",
-	styleUrls: ["./board.component.css"],
 })
 export class BoardComponent {
-	todo = ["Get to work", "Pick up groceries", "Go home", "Fall asleep"];
-
-	done = ["Get up", "Brush teeth", "Take a shower", "Check e-mail", "Walk dog"];
+	@Output() columns = ["To do", "Progress", "Done"];
 
 	drop(event: CdkDragDrop<string[]>) {
-		if (event.previousContainer === event.container) {
-			moveItemInArray(
-				event.container.data,
-				event.previousIndex,
-				event.currentIndex,
-			);
-		} else {
-			transferArrayItem(
-				event.previousContainer.data,
-				event.container.data,
-				event.previousIndex,
-				event.currentIndex,
-			);
-		}
+		moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
 	}
 }

@@ -1,0 +1,21 @@
+<header class="border-b w-full">
+  <div class="h-16 px-6 container mx-auto flex items-center justify-between">
+    <img src="/logo-dark-theme.svg" alt="Logo">
+
+    <span class="text-sm font-medium  hidden md:block">03 February 2025</span>
+
+    <div class="flex items-center gap-x-6">
+      <div class="flex items-center gap-x-3  p-2 rounded-xl">
+        <icon-moon width="20" height="20" color="var(--color-primary-foreground)" />
+        <button class="w-12 p-0.5 border bg-background rounded-full relative cursor-pinter">
+          <div class="rounded-full bg-primary size-5 transition-transform"></div>
+        </button>
+        <icon-sun width="20" height="20" color="var(--color-primary-foreground)" />
+      </div>
+
+      <app-button variant="outline">
+        <span>Logout</span>
+      </app-button>
+    </div>
+  </div>
+</header>

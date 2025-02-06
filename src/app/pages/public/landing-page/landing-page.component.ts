@@ -1,11 +1,18 @@
 import { Component } from "@angular/core";
-import { HeaderComponent } from "../../../components/header/header.component";
-import { HeroComponent } from "../../../components/hero/hero.component";
+import { RouterLink } from "@angular/router";
+import { ButtonComponent } from "../../../shared/button/button.component";
+import { IconArrowRight } from "../../../svg/icons/arrowRight.component";
+import { IconMenu } from "../../../svg/icons/menu.component";
 
 @Component({
 	selector: "app-landing-page",
-	imports: [HeaderComponent, HeroComponent],
+	imports: [
+		ButtonComponent,
+		IconMenu,
+		ButtonComponent,
+		IconArrowRight,
+		RouterLink,
+	],
 	templateUrl: "./landing-page.component.html",
-	styleUrl: "./landing-page.component.css",
 })
 export class LandingPageComponent {}
