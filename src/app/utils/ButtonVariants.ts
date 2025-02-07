@@ -8,7 +8,7 @@ export const button = tv({
 			outline: "border border bg-background shadow-sm hover:bg-primary-accent",
 			secondary:
 				"bg-primary-accent text-secondary-foreground shadow-sm hover:bg-secondary/80",
-			ghost: "hover:bg-primary-accent hover:text-secondary-foreground",
+			ghost: "hover:bg-white/10",
       dotted: "border border-dotted  border-primary w-full",
 		},
 		size: {

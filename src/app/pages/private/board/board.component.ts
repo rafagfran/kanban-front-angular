@@ -13,7 +13,7 @@ import { BoardHeaderComponent } from "./components/board-header/board-header.com
 	templateUrl: "./board.component.html",
 })
 export class BoardComponent {
-	@Output() columns = ["To do", "Progress", "Done"];
+	@Output() columns = ["To do", "Progress", "Done","To do", "Progress", "Done"];
 
 	drop(event: CdkDragDrop<string[]>) {
 		moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
