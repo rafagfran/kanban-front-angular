@@ -1,22 +1,25 @@
-<div class="cursor-pointer flex flex-col max-h-full bg-board-surface  rounded-lg w-[300px] px-2">
-  <header class="flex items-center justify-between p-4">
-    <h1 class="font-semibold">{{title}}</h1>
-    <button class="p-px bg-card-background rounded-sm">
+<div class="w-board-column cursor-pointer flex flex-col max-h-full bg-column-surface rounded-column px-2">
+  <header class="flex items-center justify-between px-4 py-2.5">
+    <h1 class="text-sm font-semibold">{{title}}</h1>
+    <button class="p-px rounded-sm">
       <icon-dots-three color="var(--color-primary-foreground)" />
     </button>
   </header>
 
   <div class="overflow-y-auto"
     style="scrollbar-width: thin; scrollbar-color: oklch(76.68% 0 0/50%) var(--color-card-background);">
-    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" class="flex flex-col gap-y-2 mr-2">
+    <div cdkDropList (cdkDropListDropped)="drop($event)" class="flex flex-col gap-y-2 mr-2">
       @for(task of data.slice(0,10); track task.id) {
-      <app-card-task cdkDrag></app-card-task>
+      <div class="h-fit" cdkDrag>
+        <div class="drag-card-placeholder" *cdkDragPlaceholder></div>
+        <app-card-task [id]="task.id" [title]="task.title" [description]="task.description"></app-card-task>
+      </div>
       }
     </div>
   </div>
 
   <footer class="py-2">
-    <app-button class="w-full" variant="ghost">
+    <app-button class="w-full " variant="ghost" size="sm">
       <icon-plus />
       <span>Add New Task</span>
     </app-button>

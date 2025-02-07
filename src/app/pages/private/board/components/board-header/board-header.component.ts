@@ -7,7 +7,6 @@ import { IconSun } from "../../../../../svg/icons/sun.component";
 	selector: "app-board-header",
 	imports: [IconMoon, IconSun, ButtonComponent],
 	templateUrl: "./board-header.component.html",
-	styleUrl: "./board-header.component.css",
 })
 export class BoardHeaderComponent {
 	actualDate = new Date().toLocaleDateString("en-GB", {

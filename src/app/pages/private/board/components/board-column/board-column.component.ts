@@ -1,6 +1,7 @@
 import {
 	CdkDrag,
 	type CdkDragDrop,
+	CdkDragPlaceholder,
 	CdkDropList,
 	CdkDropListGroup,
 	moveItemInArray,
@@ -21,11 +22,11 @@ import { CardTaskComponent } from "../card-task/card-task.component";
 		ButtonComponent,
 		IconPlus,
 		CdkDropListGroup,
+		CdkDragPlaceholder,
 		CdkDropList,
 		CdkDrag,
 	],
 	templateUrl: "./board-column.component.html",
-	styleUrl: "./board-column.component.css",
 })
 export class BoardColumnComponent {
 	data: task[] = MOCK_DATA;

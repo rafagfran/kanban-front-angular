@@ -5,8 +5,8 @@ import { RouterOutlet } from "@angular/router";
 	selector: "app-root",
 	templateUrl: "./app.component.html",
 	imports: [RouterOutlet],
-	styleUrl: "./app.component.css",
 })
+
 export class AppComponent {
 	title = "valinor-kanban";
 }
