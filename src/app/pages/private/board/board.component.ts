@@ -21,7 +21,6 @@ import { BoardHeaderComponent } from "./components/board-header/board-header.com
 	templateUrl: "./board.component.html",
 })
 export class BoardComponent {
-
 	columns = [
 		"To do",
 		"Progress",
@@ -39,5 +38,5 @@ export class BoardComponent {
 		moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
 	}
 
-  
+
 }
