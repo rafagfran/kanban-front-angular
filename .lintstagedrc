@@ -4,5 +4,10 @@
     "biome format --write --no-errors-on-unmatched",
     "biome lint --write --no-errors-on-unmatched"
   ],
-  "*.{html,css}": ["prettier --write . --plugin=prettier-plugin-tailwindcss"]
+  "*": [
+    "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
+  ],
+  "*.{html,css}": [
+    "prettier --write . --plugin=prettier-plugin-tailwindcss"
+  ]
 }
