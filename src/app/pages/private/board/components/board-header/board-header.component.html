@@ -1,16 +1,28 @@
-<header class="border-b w-full py-2 bg-column-surface/70 backdrop-blur-md">
+<header class="w-full border-b bg-column-surface/70 py-2 backdrop-blur-md">
   <div class="container mx-auto flex items-center justify-between">
-    <img src="/logo-dark-theme.svg" alt="Logo">
+    <img src="/logo-dark-theme.svg" alt="Logo" />
 
-    <span class="text-sm font-medium  hidden md:block">{{actualDate}}</span>
+    <span class="hidden text-sm font-medium md:block">{{ actualDate }}</span>
 
     <div class="flex items-center gap-x-6">
-      <div class="flex items-center gap-x-3  p-2 rounded-xl">
-        <icon-moon width="20" height="20" color="var(--color-primary-foreground)" />
-        <button class="w-10 p-0.5 border bg-background rounded-full relative cursor-pinter">
-          <div class="rounded-full bg-primary-accent size-4 transition-transform"></div>
+      <div class="flex items-center gap-x-3 rounded-xl p-2">
+        <icon-moon
+          width="20"
+          height="20"
+          color="var(--color-primary-foreground)"
+        />
+        <button
+          class="cursor-pinter relative w-10 rounded-full border bg-background p-0.5"
+        >
+          <div
+            class="size-4 rounded-full bg-primary-accent transition-transform"
+          ></div>
         </button>
-        <icon-sun width="20" height="20" color="var(--color-primary-foreground)" />
+        <icon-sun
+          width="20"
+          height="20"
+          color="var(--color-primary-foreground)"
+        />
       </div>
 
       <app-button variant="outline">

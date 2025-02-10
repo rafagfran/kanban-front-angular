@@ -1,17 +1,23 @@
-<div class="flex flex-col h-screen w-screen">
+<div class="flex h-screen w-screen flex-col">
   <app-board-header></app-board-header>
 
-  <main class="flex flex-1 py-4 overflow-y-hidden bg-board-surface"
-    style="scrollbar-color: oklch(76.68% 0 0/50%) oklch(22.98% 0.0107 260.68 / 20%);">
-    <div cdkDropList
-      cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"
-      class="flex gap-3 overflow-x-auto pb-4 px-4 ">
-      @for(column of columns;track column){
-      <div class="flex" cdkDrag>
-        <div class="drag-column-placeholder" *cdkDragPlaceholder>
+  <main
+    class="bg-board-surface flex flex-1 overflow-y-hidden py-4"
+    style="
+      scrollbar-color: oklch(76.68% 0 0/50%) oklch(22.98% 0.0107 260.68 / 20%);
+    "
+  >
+    <div
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+      class="flex gap-3 overflow-x-auto px-4 pb-4"
+    >
+      @for (column of columns; track column) {
+        <div class="flex" cdkDrag>
+          <div class="drag-column-placeholder" *cdkDragPlaceholder></div>
+          <app-board-column [title]="column"></app-board-column>
         </div>
-        <app-board-column [title]="column"></app-board-column>
-      </div>
       }
     </div>
   </main>

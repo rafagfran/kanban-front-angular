@@ -1,6 +1,7 @@
-<header class="h-16 container flex items-center justify-between absolute top-2 left-0 right-0 z-10 ">
-
-  <img src="/logo-white-theme.svg" alt="">
+<header
+  class="absolute top-2 right-0 left-0 z-10 container flex h-16 items-center justify-between"
+>
+  <img src="/logo-white-theme.svg" alt="" />
 
   <div class="md:hidden">
     <icon-menu height="32" height="32" />
@@ -10,39 +11,50 @@
       <li>Docs</li>
       <li>
         <app-button variant="outline">
-          <a href="/auth/signin">
-            SIGN IN
-          </a>
+          <a href="/auth/signin"> SIGN IN </a>
         </app-button>
       </li>
       <li>
         <app-button variant="outline">
-          <a href="/auth/signup">
-            GET STARTED
-          </a>
+          <a href="/auth/signup"> GET STARTED </a>
         </app-button>
       </li>
     </ul>
   </nav>
 </header>
 
-<main class="relative h-screen pt-44  overflow-hidden">
+<main class="relative h-screen overflow-hidden pt-44">
   <div class="container grid place-items-center text-center">
-    <h1 class="font-semibold mb-6 max-w-5xl text-5xl sm:text-7xl ">Boost Your <span
-        class="primary-foreground">Productivity</span> with the Power of Kanban
+    <h1 class="mb-6 max-w-5xl text-5xl font-semibold sm:text-7xl">
+      Boost Your <span class="primary-foreground">Productivity</span> with the
+      Power of Kanban
     </h1>
-    <p class="text-gray-500 sm:text-xl  max-w-md  sm:max-w-lg lg:max-w-4xl mb-10">Streamline your workflow, collaborate
-      seamlessly, and achieve more, faster!</p>
+    <p class="mb-10 max-w-md text-gray-500 sm:max-w-lg sm:text-xl lg:max-w-4xl">
+      Streamline your workflow, collaborate seamlessly, and achieve more,
+      faster!
+    </p>
     <app-button>
-      <a routerLink="/board" routerLinkActive="active" class="flex items-center gap-4">
-        <span class="text-white z-10">Get Started</span>
-        <icon-arrowRight height="20" width="20" color="#fff"
-          class="z-10 group-hover:translate-x-1 transition-all duration-300" />
+      <a
+        routerLink="/board"
+        routerLinkActive="active"
+        class="flex items-center gap-4"
+      >
+        <span class="z-10 text-white">Get Started</span>
+        <icon-arrowRight
+          height="20"
+          width="20"
+          color="#fff"
+          class="z-10 transition-all duration-300 group-hover:translate-x-1"
+        />
         <span
-          class="z-0 absolute size-full -left-full bg-primary-accent rounded-full group-hover:left-0  transition-all duration-300"></span>
+          class="absolute -left-full z-0 size-full rounded-full bg-primary-accent transition-all duration-300 group-hover:left-0"
+        ></span>
       </a>
     </app-button>
-    <img src=" hero-board-image.png" alt="" class="object-cover w-full mt-20 shadow-xl shadow-black/60 rounded-xl" />
+    <img
+      src=" hero-board-image.png"
+      alt=""
+      class="mt-20 w-full rounded-xl object-cover shadow-xl shadow-black/60"
+    />
   </div>
-
 </main>
