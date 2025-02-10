@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import type { TaskType } from '../../../../../data/MOCK_DATA';
 import { IconChatText } from '../../../../../svg/icons/chatText.component';
 import { IconFileText } from '../../../../../svg/icons/fileText.component';
 
@@ -8,7 +9,5 @@ import { IconFileText } from '../../../../../svg/icons/fileText.component';
   templateUrl: './card-task.component.html',
 })
 export class CardTaskComponent {
-  @Input() id!: string;
-  @Input() title!: string;
-  @Input() description!: string;
+  @Input() taskData!: TaskType;
 }

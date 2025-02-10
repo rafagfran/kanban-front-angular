@@ -2,32 +2,23 @@
   class="flex max-h-full w-board-column cursor-pointer flex-col rounded-column bg-column-surface px-2"
 >
   <header class="flex items-center justify-between px-4 py-2.5">
-    <h1 class="text-sm font-semibold">{{ title }}</h1>
+    <h1 class="text-sm font-semibold">{{ columnData.title }}</h1>
     <button class="rounded-sm p-px">
       <icon-dots-three color="var(--color-primary-foreground)" />
     </button>
   </header>
 
-  <div
-    class="overflow-y-auto"
-    style="
-      scrollbar-width: thin;
-      scrollbar-color: oklch(76.68% 0 0/50%) var(--color-card-background);
-    "
-  >
+  <div cdkDropListGroup class="custom-scrollbar overflow-y-auto">
     <div
       cdkDropList
+      [cdkDropListData]="columnData.tasks"
       (cdkDropListDropped)="drop($event)"
-      class="mr-2 flex flex-col gap-y-2"
+      class="flex flex-col gap-y-2 pr-2"
     >
-      @for (task of data; track task.id; let i = $index) {
-        <div class="h-fit" cdkDrag>
+      @for (task of columnData.tasks; track task.id) {
+        <div cdkDrag class="relative">
           <div class="drag-card-placeholder" *cdkDragPlaceholder></div>
-          <app-card-task
-            [id]="task.id"
-            [title]="task.title"
-            [description]="task.description"
-          ></app-card-task>
+          <app-card-task [taskData]="task"></app-card-task>
         </div>
       }
     </div>

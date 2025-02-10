@@ -8,7 +8,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
-import { MOCK_DATA, type task } from '../../../../../data/MOCK_DATA';
+import type { ColumnType, TaskType } from '../../../../../data/MOCK_DATA';
 import { ButtonComponent } from '../../../../../shared/button/button.component';
 import { IconDotsThree } from '../../../../../svg/icons/dots.component';
 import { IconPlus } from '../../../../../svg/icons/plus.component';
@@ -29,10 +29,13 @@ import { CardTaskComponent } from '../card-task/card-task.component';
   templateUrl: './board-column.component.html',
 })
 export class BoardColumnComponent {
-  data: task[] = MOCK_DATA;
-  @Input({ required: true }) title = '';
+  @Input() columnData!: ColumnType;
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<TaskType[]>) {
+    if (!this.columnData) {
+      console.error('data is not defined');
+    }
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

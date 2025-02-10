@@ -11,12 +11,12 @@
       cdkDropList
       cdkDropListOrientation="horizontal"
       (cdkDropListDropped)="drop($event)"
-      class="flex gap-3 overflow-x-auto px-4 pb-4"
+      class="flex h-fit gap-3 overflow-x-auto px-4 pb-4"
     >
-      @for (column of columns; track column) {
+      @for (column of columns; track column.title) {
         <div class="flex" cdkDrag>
           <div class="drag-column-placeholder" *cdkDragPlaceholder></div>
-          <app-board-column [title]="column"></app-board-column>
+          <app-board-column [columnData]="column"></app-board-column>
         </div>
       }
     </div>

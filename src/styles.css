@@ -101,7 +101,8 @@
   background: var(--color-card-background);
   opacity: 0.35;
   border-radius: var(--radius-card);
-  min-height: 190px;
+  height: 100%;
+  min-height: 157px;
   margin-bottom: 8px;
   width: 100%;
   border: 1px solid var(--color-border);
@@ -116,4 +117,9 @@
   );
   opacity: 0.5;
   border-radius: var(--radius-column);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(76.68% 0 0 / 50%) var(--color-card-background);
 }
