@@ -2,7 +2,7 @@
   class="flex max-h-full w-board-column cursor-pointer flex-col rounded-column bg-column-surface px-2"
 >
   <header class="flex items-center justify-between px-4 py-2.5">
-    <h1 class="text-sm font-semibold">{{ columnData.title }}</h1>
+    <h1 class="text-sm font-semibold break-words">{{ columnData.title }}</h1>
     <button class="rounded-sm p-px">
       <icon-dots-three color="var(--color-primary-foreground)" />
     </button>
@@ -21,31 +21,38 @@
           <app-card-task [taskData]="task"></app-card-task>
         </div>
       }
-      <div class="{{ showInput() ? 'block' : 'hidden' }}">
-        <input
-          class="h-16 w-full rounded-lg bg-card-background p-2 text-sm font-extralight placeholder:text-primary-foreground/80"
-          type="text"
-          [formControl]="newTaskTitle"
-          placeholder="Insira um título"
-        />
-      </div>
-      <div class="flex w-2/3 gap-x-2">
-        <app-button
-          class="w-full"
-          (onClick)="addNewTask({ columnTitle: columnData.title })"
-          >Add Card</app-button
-        >
-        <app-button size="icon" variant="ghost" (onClick)="toggleInput()">
-          <span>X</span>
-        </app-button>
-      </div>
+      @if (showInput()) {
+        <div #newTaskContainer>
+          <input
+            #newTaskInput
+            [(ngModel)]="newTaskTitle"
+            class="mb-2 h-16 w-full rounded-lg bg-card-background px-2 pt-2 pb-8 text-start text-sm font-extralight placeholder:text-primary-foreground/80 focus:border focus:border-primary focus:outline-none"
+            type="text"
+            placeholder="Insira um título"
+          />
+          <div class="flex w-2/3 gap-x-2">
+            <app-button
+              class="w-full"
+              (onClick)="addNewTask({ columnTitle: columnData.title })"
+              >Add Card</app-button
+            >
+            <app-button
+              size="icon"
+              variant="ghost"
+              (onClick)="showInput.set(false)"
+            >
+              <span>X</span>
+            </app-button>
+          </div>
+        </div>
+      }
     </div>
   </div>
 
   <footer class="py-2">
     @if (!showInput()) {
       <app-button
-        (onClick)="toggleInput()"
+        (onClick)="enableInput()"
         class="w-full"
         variant="ghost"
         size="sm"

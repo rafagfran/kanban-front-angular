@@ -1,14 +1,15 @@
 <div class="space-y-4 rounded-card bg-card-background p-4">
   <!-- title/description -->
-  <div>
-    <h2 class="flex items-center">
-      <div class="mr-2 size-3 rounded-full bg-orange-500"></div>
-      {{ taskData.title }}
-    </h2>
-    <p class="mt-4 text-sm text-secondary-foreground">
-      {{ taskData.description }}
-    </p>
+  <div class="items-top flex">
+    <div
+      class="mt-1.5 mr-2 size-3 shrink-0 grow-0 rounded-full bg-orange-500"
+    ></div>
+    <h2 class="flex-1 overflow-hidden break-words">{{ taskData.title }}</h2>
   </div>
+  <p class="mt-4 text-sm break-words text-secondary-foreground">
+    {{ taskData.description }}
+  </p>
+
   <!-- divisor -->
   <div class="h-px w-full rounded-full bg-border"></div>
   <!-- responsible -->
