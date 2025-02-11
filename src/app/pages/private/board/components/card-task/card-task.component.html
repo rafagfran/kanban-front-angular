@@ -2,13 +2,15 @@
   <!-- title/description -->
   <div class="items-top flex">
     <div
-      class="mt-1.5 mr-2 size-3 shrink-0 grow-0 rounded-full bg-orange-500"
+      class="mt-1.5 mr-2 size-2 shrink-0 grow-0 rounded-full bg-orange-500"
     ></div>
-    <h2 class="flex-1 overflow-hidden break-words">{{ taskData.title }}</h2>
+    <p class="flex-1 overflow-hidden text-sm font-light break-words">
+      {{ taskData.title }}
+    </p>
   </div>
-  <p class="mt-4 text-sm break-words text-secondary-foreground">
+  <!-- <p class="mt-4 text-sm break-words text-secondary-foreground">
     {{ taskData.description }}
-  </p>
+  </p> -->
 
   <!-- divisor -->
   <div class="h-px w-full rounded-full bg-border"></div>
@@ -16,17 +18,17 @@
   <div class="flex items-center justify-between">
     <div class="flex items-center text-sm">
       <div
-        class="grid size-8 place-items-center rounded-full bg-amber-500 outline-1 outline-card-background"
+        class="grid size-7 place-items-center overflow-hidden rounded-full border-1 border-card-background bg-amber-500"
       >
         D
       </div>
       <div
-        class="relative -left-3 grid size-8 place-items-center rounded-full bg-green-500 outline-1 outline-card-background"
+        class="relative -left-3 grid size-7 place-items-center rounded-full bg-green-500 outline-1 outline-card-background"
       >
         R
       </div>
       <div
-        class="relative -left-6 grid size-8 place-items-center rounded-full bg-purple-600 outline-1 outline-card-background"
+        class="relative -left-6 grid size-7 place-items-center rounded-full bg-purple-600 outline-1 outline-card-background"
       >
         +1
       </div>

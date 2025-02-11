@@ -20,5 +20,34 @@
         </div>
       }
     </div>
+
+    @if (showInput()) {
+      <div
+        #newTaskContainer
+        class="h-fit w-board-column rounded-column bg-column-surface p-2"
+      >
+        <input
+          #newTaskInput
+          [(ngModel)]="newListTitle"
+          class="mb-2 w-full rounded-lg bg-card-background p-2 text-start text-sm font-extralight placeholder:text-primary-foreground/80 focus:border focus:border-primary focus:outline-none"
+          type="text"
+          placeholder="Insira um título"
+        />
+        <button
+          (click)="addNewList()"
+          class="focus-visible:ring-ring inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm whitespace-nowrap transition-colors hover:bg-primary-accent focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+        >
+          Add List
+        </button>
+      </div>
+    } @else {
+      <button
+        (click)="enableInput()"
+        class="focus-visible:ring-ring inline-flex h-9 w-board-column cursor-pointer items-center gap-2 rounded-md bg-white/10 px-4 py-2 text-sm whitespace-nowrap backdrop-blur-md transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+      >
+        <icon-plus></icon-plus>
+        <span>Add new list</span>
+      </button>
+    }
   </main>
 </div>
