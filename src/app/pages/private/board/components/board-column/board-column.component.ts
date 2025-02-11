@@ -66,8 +66,6 @@ export class BoardColumnComponent {
   }
 
   ngAfterViewChecked(): void {
-    console.log('update');
-
     if (this.shouldFocus && this.newTaskInput) {
       this.newTaskInput.nativeElement.focus();
       this.shouldFocus = false;
@@ -84,6 +82,7 @@ export class BoardColumnComponent {
       !this.newTaskContainer.nativeElement.contains(event.target as Node)
     ) {
       this.showInput.set(false);
+      this.newTaskTitle = '';
     }
   }
 

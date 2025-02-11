@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../shared/button/button.component';
@@ -12,6 +13,7 @@ import { IconMenu } from '../../../svg/icons/menu.component';
     ButtonComponent,
     IconArrowRight,
     RouterLink,
+    NgOptimizedImage,
   ],
   templateUrl: './landing-page.component.html',
 })
