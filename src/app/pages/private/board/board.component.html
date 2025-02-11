@@ -2,7 +2,7 @@
   <app-board-header></app-board-header>
 
   <main
-    class="bg-board-surface flex flex-1 overflow-y-hidden py-4"
+    class="bg-board-surface flex max-h-[calc(100vh-var(--spacing-header-size))] flex-1 overflow-y-hidden py-4"
     style="
       scrollbar-color: oklch(76.68% 0 0/50%) oklch(22.98% 0.0107 260.68 / 20%);
     "
@@ -13,10 +13,10 @@
       (cdkDropListDropped)="drop($event)"
       class="flex gap-3 overflow-x-auto px-4 pb-4"
     >
-      @for (column of columns; track column) {
-        <div class="flex" cdkDrag>
+      @for (column of columns; track column.title) {
+        <div class="flex h-fit max-h-full" cdkDrag>
           <div class="drag-column-placeholder" *cdkDragPlaceholder></div>
-          <app-board-column [title]="column"></app-board-column>
+          <app-board-column [columnData]="column"></app-board-column>
         </div>
       }
     </div>

@@ -5,7 +5,8 @@ import {
   CdkDropList,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { Component, Input, booleanAttribute } from '@angular/core';
+import { Component } from '@angular/core';
+import { type ColumnType, MOCK_DATA } from '../../../data/MOCK_DATA';
 import { BoardColumnComponent } from './components/board-column/board-column.component';
 import { BoardHeaderComponent } from './components/board-header/board-header.component';
 @Component({
@@ -20,20 +21,9 @@ import { BoardHeaderComponent } from './components/board-header/board-header.com
   templateUrl: './board.component.html',
 })
 export class BoardComponent {
-  columns = [
-    'To do',
-    'Progress',
-    'Done',
-    'Backlog',
-    'In Review',
-    'Blocked',
-    'In Testing',
-    'Ready for Deployment',
-    'Deployed',
-    'Archived',
-  ];
+  columns: ColumnType[] = MOCK_DATA;
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<ColumnType[]>) {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
   }
 }

@@ -26,7 +26,8 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "tab",
-    "indentWidth": 2
+    "indentWidth": 2,
+    "lineEnding": "lf"
   },
   "organizeImports": {
     "enabled": true
@@ -34,7 +35,22 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "style": {
+        "useNamingConvention": {
+          "level": "error",
+          "options": {
+            "requireAscii": true,
+            "strictCase": false
+          }
+        },
+        "useFilenamingConvention": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "warn"
+      }
     }
   },
   "javascript": {
