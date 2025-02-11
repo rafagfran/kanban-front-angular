@@ -12,6 +12,8 @@
   --color-column-surface: oklch(19.09% 0.0087 264.35);
 
   --spacing-board-column: 300px;
+  --spacing-header-size: 56px;
+
   --radius-card: 0.5rem;
   --radius-column: 0.75rem;
 
@@ -109,6 +111,7 @@
 }
 
 .drag-column-placeholder {
+  height: 100%;
   min-width: var(--spacing-board-column);
   background: linear-gradient(
     to bottom right,
