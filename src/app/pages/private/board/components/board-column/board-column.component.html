@@ -1,4 +1,6 @@
-<div class="flex max-h-full w-board-column cursor-pointer flex-col rounded-column bg-column-surface px-2 ">
+<div
+  class="flex max-h-full w-board-column cursor-pointer flex-col rounded-column bg-column-surface px-2"
+>
   <header class="flex items-center justify-between px-4 py-2.5">
     <h1 class="text-sm font-semibold">{{ columnData.title }}</h1>
     <button class="rounded-sm p-px">
@@ -7,21 +9,32 @@
   </header>
 
   <div cdkDropListGroup class="custom-scrollbar overflow-y-auto">
-    <div cdkDropList [cdkDropListData]="columnData.tasks" (cdkDropListDropped)="drop($event)"
-      class="flex flex-col gap-y-2 pr-2">
+    <div
+      cdkDropList
+      [cdkDropListData]="columnData.tasks"
+      (cdkDropListDropped)="drop($event)"
+      class="flex flex-col gap-y-2 pr-2"
+    >
       @for (task of columnData.tasks; track task.id) {
-      <div cdkDrag>
-        <div class="drag-card-placeholder" *cdkDragPlaceholder></div>
-        <app-card-task [taskData]="task"></app-card-task>
-      </div>
+        <div cdkDrag>
+          <div class="drag-card-placeholder" *cdkDragPlaceholder></div>
+          <app-card-task [taskData]="task"></app-card-task>
+        </div>
       }
-      <div class="{{showInput() ? 'block' : 'hidden'}}">
+      <div class="{{ showInput() ? 'block' : 'hidden' }}">
         <input
-          class="p-2 rounded-lg h-16 bg-card-background font-extralight placeholder:text-primary-foreground/80 text-sm w-full border-none  "
-          type="text" [formControl]="newTaskTitle" placeholder="Insira um título" />
+          class="h-16 w-full rounded-lg bg-card-background p-2 text-sm font-extralight placeholder:text-primary-foreground/80"
+          type="text"
+          [formControl]="newTaskTitle"
+          placeholder="Insira um título"
+        />
       </div>
-      <div class="flex gap-x-2 w-2/3">
-        <app-button class="w-full" (onClick)="addNewTask({columnTitle: columnData.title})">Add Card</app-button>
+      <div class="flex w-2/3 gap-x-2">
+        <app-button
+          class="w-full"
+          (onClick)="addNewTask({ columnTitle: columnData.title })"
+          >Add Card</app-button
+        >
         <app-button size="icon" variant="ghost" (onClick)="toggleInput()">
           <span>X</span>
         </app-button>
@@ -30,12 +43,16 @@
   </div>
 
   <footer class="py-2">
-    @if(!showInput()){
-    <app-button (onClick)="toggleInput()" class="w-full" variant="ghost" size="sm">
-      <icon-plus />
-      <span>Add New Card</span>
-    </app-button>
+    @if (!showInput()) {
+      <app-button
+        (onClick)="toggleInput()"
+        class="w-full"
+        variant="ghost"
+        size="sm"
+      >
+        <icon-plus />
+        <span>Add New Card</span>
+      </app-button>
     }
-
   </footer>
 </div>
