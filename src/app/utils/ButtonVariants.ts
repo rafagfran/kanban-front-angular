@@ -1,13 +1,12 @@
 import { type VariantProps, tv } from 'tailwind-variants';
 
-export const button = tv({
+export const ButtonVariants = tv({
   base: 'cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   variants: {
     variant: {
-      default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
-      outline: 'border border bg-background shadow-sm hover:bg-primary-accent',
-      secondary:
-        'bg-primary-accent text-secondary-foreground shadow-sm hover:bg-secondary/80',
+      default: 'bg-primary  hover:bg-primary/90  text-foreground-light',
+      outline: 'border border bg-background  hover:bg-primary-hover',
+      secondary: 'bg-primary-hover text-muted-foreground hover:bg-secondary/80',
       ghost: 'hover:bg-white/10',
       dotted: 'border border-dotted  border-primary w-full',
     },
@@ -30,4 +29,4 @@ export const button = tv({
   },
 });
 
-export type ButtonVariants = VariantProps<typeof button>;
+export type ButtonVariantTypes = VariantProps<typeof ButtonVariants>;

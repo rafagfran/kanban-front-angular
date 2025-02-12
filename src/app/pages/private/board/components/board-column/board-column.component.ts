@@ -20,12 +20,9 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  type ColumnType,
-  MOCK_DATA,
-  type TaskType,
-} from '../../../../../data/MOCK_DATA';
+import { MOCK_DATA, type TaskType } from '../../../../../data/MOCK_DATA';
 import { ButtonComponent } from '../../../../../shared/button/button.component';
+import { InputComponent } from '../../../../../shared/input/input.component';
 import { IconDotsThree } from '../../../../../svg/icons/dots.component';
 import { IconPlus } from '../../../../../svg/icons/plus.component';
 import { CardTaskComponent } from '../card-task/card-task.component';
@@ -44,6 +41,7 @@ import { CardTaskComponent } from '../card-task/card-task.component';
     CdkDrag,
     ReactiveFormsModule,
     FormsModule,
+    InputComponent,
   ],
   templateUrl: './board-column.component.html',
 })
@@ -52,7 +50,7 @@ import { CardTaskComponent } from '../card-task/card-task.component';
 export class BoardColumnComponent {
   @ViewChild('newTaskInput') newTaskInput!: ElementRef<HTMLInputElement>;
   @ViewChild('newTaskContainer') newTaskContainer!: ElementRef<HTMLDivElement>;
-  @Input() columnData!: ColumnType;
+  @Input() title!: string;
   newTaskTitle = '';
   showInput = signal(false);
   private shouldFocus = false;
@@ -60,10 +58,10 @@ export class BoardColumnComponent {
   //TODO: Entender o que é o ChangeDetectorRef
   constructor(private cdRef: ChangeDetectorRef) {}
 
-  enableInput() {
+  enableInput = () => {
     this.showInput.set(true);
     this.shouldFocus = true;
-  }
+  };
 
   ngAfterViewChecked(): void {
     if (this.shouldFocus && this.newTaskInput) {
@@ -86,16 +84,14 @@ export class BoardColumnComponent {
     }
   }
 
-  addNewTask = ({ columnTitle }: { columnTitle: string }) => {
+  addNewTask = ({ columnId }: { columnId: string }) => {
     if (this.newTaskTitle.trim()) {
       const newTask: TaskType = {
         id: Date.now().toString(),
         title: this.newTaskTitle,
         description: '',
       };
-      MOCK_DATA.find((column) => column.title === columnTitle)?.tasks.push(
-        newTask,
-      );
+      MOCK_DATA.find((column) => column.id === columnId)?.tasks.push(newTask);
       this.newTaskTitle = '';
       this.showInput.set(false);
     } else {
@@ -104,10 +100,6 @@ export class BoardColumnComponent {
   };
 
   drop(event: CdkDragDrop<TaskType[]>) {
-    if (!this.columnData) {
-      console.error('data is not defined');
-    }
-
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

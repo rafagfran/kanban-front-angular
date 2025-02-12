@@ -1,26 +1,33 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { type ButtonVariants, button } from '../../utils/ButtonVariants';
+import { Component, Input } from '@angular/core';
+import {
+  type ButtonVariantTypes,
+  ButtonVariants,
+} from '../../utils/ButtonVariants';
 
 @Component({
-	selector: 'app-button',
-	templateUrl: './button.component.html',
+  selector: 'button-component',
+  template: ` <ng-content></ng-content> `,
+  host: {
+    role: 'button',
+    '[class]': 'classes',
+    '(click)': 'handleClick()',
+  },
 })
 export class ButtonComponent {
-	@Input() class = '';
-	@Input() variant: ButtonVariants['variant'];
-	@Input() size: ButtonVariants['size'];
-	@Output() onClick = new EventEmitter<Event>();
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() content!: string;
+  @Input() class = '';
+  @Input() variant: ButtonVariantTypes['variant'];
+  @Input() size: ButtonVariantTypes['size'];
+  @Input() onClick: () => void = () => {};
 
-	//ENTENDER ESTA PARTE DE RECEBER O EVENTO
-	handleClick(event: Event) {
-		this.onClick.emit(event);
-	}
+  get classes(): string {
+    return ButtonVariants({
+      variant: this.variant,
+      size: this.size,
+      class: this.class,
+    });
+  }
 
-	get classes(): string {
-		return button({
-			variant: this.variant,
-			size: this.size,
-			class: this.class,
-		});
-	}
+  handleClick = () => this.onClick();
 }

@@ -1,35 +1,30 @@
 <header
-  class="grid h-header-size w-full place-items-center border-b bg-column-surface/70 backdrop-blur-md"
+  class="grid h-header w-full place-items-center border-b backdrop-blur-md"
 >
   <div class="container flex items-center justify-between">
-    <img src="/logo-dark-theme.svg" alt="Logo" />
+    <img src="/logo-white-theme.svg" alt="Logo" />
 
-    <span class="hidden text-sm font-medium md:block">{{ actualDate }}</span>
+    <span class="hidden text-sm md:block">{{ actualDate }}</span>
 
     <div class="flex items-center gap-x-6">
       <div class="flex items-center gap-x-3 rounded-xl p-2">
-        <icon-moon
-          width="20"
-          height="20"
-          color="var(--color-primary-foreground)"
-        />
+        <icon-moon width="20" height="20" />
         <button
-          class="cursor-pinter relative w-10 rounded-full border bg-background p-0.5"
+          [attr.data-state]="theme()"
+          (click)="switchTheme()"
+          class="peer group focus-visible:ring-ring inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=dark]:bg-background-dark data-[state=light]:bg-background"
         >
           <div
-            class="size-4 rounded-full bg-primary-accent transition-transform"
+            class="group-checked:data-[state=light] group:data-[state=dark]:translate-x-0 pointer-events-none block h-4 w-4 rounded-full bg-primary ring-0 transition-transform"
           ></div>
         </button>
-        <icon-sun
-          width="20"
-          height="20"
-          color="var(--color-primary-foreground)"
-        />
+
+        <icon-sun width="20" height="20" />
       </div>
 
-      <app-button variant="outline">
+      <button-component variant="outline">
         <span>Logout</span>
-      </app-button>
+      </button-component>
     </div>
   </div>
 </header>

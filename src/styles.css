@@ -2,17 +2,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(53.32% 0.2596 262.64);
-  --color-primary-accent: oklch(63.93% 0.1947 257.88);
-  --color-background: oklch(33.58% 0.0385 262.12);
-  --color-card-background: oklch(26.71% 0.0126 258.37);
-  --color-border: oklch(31.47% 0.0166 255.64);
-  --color-primary-foreground: oklch(100% 0 0);
-  --color-secondary-foreground: oklch(76.68% 0 0);
-  --color-column-surface: oklch(19.09% 0.0087 264.35);
+  --color-background: oklch(98% 0.01 260); /* Fundo claro e suave */
+  --color-background-dark: oklch(
+    20% 0.01 260
+  ); /* Fundo escuro para contraste */
+
+  --color-foreground: oklch(25% 0.01 260); /* Texto principal */
+  --color-foreground-light: oklch(
+    99% 0.01 260
+  ); /* Texto claro para fundos escuros */
+
+  --color-border: oklch(90% 0.01 260); /* Bordas claras */
+  --color-border-dark: oklch(30% 0.01 260); /* Bordas escuras */
+
+  --color-primary: oklch(65% 0.2 245); /* Azul moderno e vibrante */
+  --color-primary-hover: oklch(55% 0.2 245); /* Hover mais escuro */
+  --color-secondary: oklch(75% 0.15 140); /* Verde complementar */
+
+  --color-warning: oklch(85% 0.18 80); /* Amarelo suave para alertas */
+  --color-highlight: oklch(75% 0.1 310); /* Roxo vibrante para destaques */
+
+  --color-card-background: oklch(99% 0 0); /* Fundo de cartão claro */
+  --color-column-background: oklch(92% 0.01 264); /* Fundo de coluna suave */
+
+  --color-header-background: oklch(
+    75% 0.12 245
+  ); /* Cabeçalho com tom primário */
 
   --spacing-board-column: 300px;
-  --spacing-header-size: 56px;
+  --spacing-header: 64px;
 
   --radius-card: 0.5rem;
   --radius-column: 0.75rem;
@@ -35,26 +53,6 @@
     }
   }
 }
-/*
-.light {
-	--color-primary: oklch(53.32% 0.2596 262.64);
-	--color-primary-accent: oklch(62.57% 0.2051 254.88);
-	--color-background: oklch(96.33% 0.0074 260.73);
-	--color-card-background: oklch(100% 0 0);
-	--color-border: oklch(87.68% 0.0157 257.2);
-	--color-primary-foreground: oklch(21.78% 0 0);
-	--color-secondary-foreground: oklch(42.76% 0 0);
-}
-
-.dark {
-	--color-primary: oklch(53.32% 0.2596 262.64);
-	--color-primary-accent: oklch(63.93% 0.1947 257.88);
-	--color-background: oklch(19.09% 0.0087 264.35);
-	--color-card-background: oklch(26.71% 0.0126 258.37);
-	--color-border: oklch(31.47% 0.0166 255.64);
-	--color-primary-foreground: oklch(100% 0 0);
-	--color-secondary-foreground: oklch(76.68% 0 0);
-} */
 
 @utility container {
   margin-inline: auto;
@@ -77,7 +75,7 @@
   body {
     background-color: var(--color-background);
     font-family: "Inter", sans-serif;
-    color: var(--color-primary-foreground);
+    color: var(--color-foreground);
   }
 
   a {
@@ -115,7 +113,7 @@
   min-width: var(--spacing-board-column);
   background: linear-gradient(
     to bottom right,
-    var(--color-column-surface),
+    var(--color-column-background),
     var(--color-background)
   );
   opacity: 0.5;

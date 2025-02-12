@@ -19,5 +19,5 @@ import { Component, Input } from '@angular/core';
 export class IconArrowRight {
   @Input() width = '24';
   @Input() height = '24';
-  @Input() color = 'var(--color-primary-foreground)';
+  @Input() color = 'var(--color-foreground)';
 }
