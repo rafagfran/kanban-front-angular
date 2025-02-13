@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   type ButtonVariantTypes,
   ButtonVariants,
@@ -6,20 +6,24 @@ import {
 
 @Component({
   selector: 'button-component',
-  template: ` <ng-content></ng-content> `,
-  host: {
-    role: 'button',
-    '[class]': 'classes',
-    '(click)': 'handleClick()',
-  },
+  template: ` <button
+    [type]="type"
+    [class]="classes"
+    (click)="handleClick($event)"
+  >
+    <ng-content></ng-content>
+  </button>`,
 })
 export class ButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() content!: string;
   @Input() class = '';
   @Input() variant: ButtonVariantTypes['variant'];
   @Input() size: ButtonVariantTypes['size'];
-  @Input() onClick: () => void = () => {};
+  @Output() onClick = new EventEmitter<Event>();
+
+  handleClick(event: Event) {
+    this.onClick.emit(event);
+  }
 
   get classes(): string {
     return ButtonVariants({
@@ -28,6 +32,4 @@ export class ButtonComponent {
       class: this.class,
     });
   }
-
-  handleClick = () => this.onClick();
 }

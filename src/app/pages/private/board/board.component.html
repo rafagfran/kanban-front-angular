@@ -18,17 +18,11 @@
         <div cdkDrag>
           <div class="drag-column-placeholder" *cdkDragPlaceholder></div>
           <app-board-column
-            [title]="column.title"
+            [columnData]="column"
             cdkDropList
             [cdkDropListData]="column.tasks"
             (cdkDropListDropped)="dropCard($event)"
           >
-            @for (task of column.tasks; track task.id) {
-              <div cdkDrag>
-                <div class="drag-card-placeholder" *cdkDragPlaceholder></div>
-                <app-card-task [taskData]="task"></app-card-task>
-              </div>
-            }
           </app-board-column>
         </div>
       }
@@ -39,17 +33,14 @@
         #newTaskContainer
         class="h-fit w-board-column rounded-column bg-column-background p-2"
       >
-        <input-component
-          id="#newTaskInput"
-          placeholder="Insira um título"
-        ></input-component>
-        <button-component [onClick]="addNewList">
+        <input-component placeholder="Insira um título"></input-component>
+        <button-component (onClick)="addNewList()">
           <span>Add list</span>
         </button-component>
       </div>
     } @else {
       <button-component
-        [onClick]="enableInput"
+        (onClick)="enableInput()"
         variant="outline"
         class="w-board-column justify-start"
       >

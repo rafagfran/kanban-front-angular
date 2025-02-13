@@ -2,8 +2,6 @@ import {
   CdkDrag,
   type CdkDragDrop,
   CdkDragPlaceholder,
-  CdkDropList,
-  CdkDropListGroup,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
@@ -20,7 +18,11 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MOCK_DATA, type TaskType } from '../../../../../data/MOCK_DATA';
+import {
+  type ColumnType,
+  MOCK_DATA,
+  type TaskType,
+} from '../../../../../data/MOCK_DATA';
 import { ButtonComponent } from '../../../../../shared/button/button.component';
 import { InputComponent } from '../../../../../shared/input/input.component';
 import { IconDotsThree } from '../../../../../svg/icons/dots.component';
@@ -35,9 +37,7 @@ import { CardTaskComponent } from '../card-task/card-task.component';
     CardTaskComponent,
     ButtonComponent,
     IconPlus,
-    CdkDropListGroup,
     CdkDragPlaceholder,
-    CdkDropList,
     CdkDrag,
     ReactiveFormsModule,
     FormsModule,
@@ -48,9 +48,9 @@ import { CardTaskComponent } from '../card-task/card-task.component';
 
 // TODO: Entender como evitar a renderização desnecessária das colunas
 export class BoardColumnComponent {
-  @ViewChild('newTaskInput') newTaskInput!: ElementRef<HTMLInputElement>;
+  @ViewChild(InputComponent) inputNewTask!: InputComponent;
   @ViewChild('newTaskContainer') newTaskContainer!: ElementRef<HTMLDivElement>;
-  @Input() title!: string;
+  @Input() columnData!: ColumnType;
   newTaskTitle = '';
   showInput = signal(false);
   private shouldFocus = false;
@@ -58,33 +58,26 @@ export class BoardColumnComponent {
   //TODO: Entender o que é o ChangeDetectorRef
   constructor(private cdRef: ChangeDetectorRef) {}
 
+  disableInput = () => {
+    this.showInput.set(false);
+    this.newTaskTitle = '';
+  };
+
   enableInput = () => {
-    this.showInput.set(true);
     this.shouldFocus = true;
+    this.showInput.set(true);
   };
 
   ngAfterViewChecked(): void {
-    if (this.shouldFocus && this.newTaskInput) {
-      this.newTaskInput.nativeElement.focus();
+    if (this.shouldFocus && this.inputNewTask) {
+      this.inputNewTask.setFocus();
       this.shouldFocus = false;
       //TODO: Entender o que faz o detectChanges
       this.cdRef.detectChanges();
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    if (
-      this.showInput() &&
-      this.newTaskInput &&
-      !this.newTaskContainer.nativeElement.contains(event.target as Node)
-    ) {
-      this.showInput.set(false);
-      this.newTaskTitle = '';
-    }
-  }
-
-  addNewTask = ({ columnId }: { columnId: string }) => {
+  addNewTaskToColumn = ({ columnId }: { columnId: string }) => {
     if (this.newTaskTitle.trim()) {
       const newTask: TaskType = {
         id: Date.now().toString(),
@@ -95,10 +88,21 @@ export class BoardColumnComponent {
       this.newTaskTitle = '';
       this.showInput.set(false);
     } else {
-      this.newTaskInput.nativeElement.focus();
+      this.inputNewTask.setFocus();
     }
   };
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if (
+      this.showInput() &&
+      this.inputNewTask &&
+      !this.newTaskContainer.nativeElement.contains(event.target as Node)
+    ) {
+      this.showInput.set(false);
+      this.newTaskTitle = '';
+    }
+  }
   drop(event: CdkDragDrop<TaskType[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
