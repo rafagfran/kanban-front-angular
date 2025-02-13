@@ -2,51 +2,54 @@
   <app-board-header></app-board-header>
 
   <main
-    class="bg-board-surface flex max-h-[calc(100vh-var(--spacing-header-size))] flex-1 overflow-x-auto overflow-y-hidden py-4"
+    class="bg-board-surface max-h-[calc(100vh-var(--spacing-header-size))] flex-1 overflow-y-hidden pb-4"
     style="
-      scrollbar-color: oklch(76.68% 0 0/50%) oklch(22.98% 0.0107 260.68 / 20%);
+      scrollbar-color: var(--color-column-background)
+        var(--color-card-background);
     "
   >
-    <div
-      cdkDropListGroup
-      cdkDropList
-      cdkDropListOrientation="horizontal"
-      class="flex gap-2"
-      (cdkDropListDropped)="drop($event)"
-    >
-      @for (column of columns; track column.id) {
-        <div cdkDrag>
-          <div class="drag-column-placeholder" *cdkDragPlaceholder></div>
-          <app-board-column
-            [columnData]="column"
-            cdkDropList
-            [cdkDropListData]="column.tasks"
-            (cdkDropListDropped)="dropCard($event)"
-          >
-          </app-board-column>
+    <div class="flex h-full gap-between-columns overflow-x-auto p-4">
+      <div
+        cdkDropListGroup
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        class="flex gap-between-columns"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (column of columns; track column.id) {
+          <div cdkDrag>
+            <div class="drag-column-placeholder" *cdkDragPlaceholder></div>
+            <app-board-column
+              [columnData]="column"
+              cdkDropList
+              [cdkDropListData]="column.tasks"
+              (cdkDropListDropped)="dropCard($event)"
+            >
+            </app-board-column>
+          </div>
+        }
+      </div>
+
+      @if (showInput()) {
+        <div
+          #newTaskContainer
+          class="h-fit w-board-column rounded-column bg-column-background p-2"
+        >
+          <input-component placeholder="Insira um título"></input-component>
+          <button-component (onClick)="addNewList()">
+            <span>Add list</span>
+          </button-component>
         </div>
+      } @else {
+        <button-component
+          (onClick)="enableInput()"
+          variant="outline"
+          class="w-board-column justify-start"
+        >
+          <icon-plus></icon-plus>
+          <span>Add new list</span>
+        </button-component>
       }
     </div>
-
-    @if (showInput()) {
-      <div
-        #newTaskContainer
-        class="h-fit w-board-column rounded-column bg-column-background p-2"
-      >
-        <input-component placeholder="Insira um título"></input-component>
-        <button-component (onClick)="addNewList()">
-          <span>Add list</span>
-        </button-component>
-      </div>
-    } @else {
-      <button-component
-        (onClick)="enableInput()"
-        variant="outline"
-        class="w-board-column justify-start"
-      >
-        <icon-plus></icon-plus>
-        <span>Add new list</span>
-      </button-component>
-    }
   </main>
 </div>

@@ -17,7 +17,7 @@ import {
   ViewChild,
   signal,
 } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   type ColumnType,
   MOCK_DATA,
@@ -51,41 +51,35 @@ export class BoardColumnComponent {
   @ViewChild(InputComponent) inputNewTask!: InputComponent;
   @ViewChild('newTaskContainer') newTaskContainer!: ElementRef<HTMLDivElement>;
   @Input() columnData!: ColumnType;
-  newTaskTitle = '';
+
+  newTaskTitle = new FormControl('');
   showInput = signal(false);
-  private shouldFocus = false;
 
   //TODO: Entender o que é o ChangeDetectorRef
   constructor(private cdRef: ChangeDetectorRef) {}
 
+  handleInputValueChange = (value: string) => {
+    console.log(value);
+  };
+
   disableInput = () => {
     this.showInput.set(false);
-    this.newTaskTitle = '';
+    this.newTaskTitle.setValue('');
   };
 
   enableInput = () => {
-    this.shouldFocus = true;
     this.showInput.set(true);
   };
 
-  ngAfterViewChecked(): void {
-    if (this.shouldFocus && this.inputNewTask) {
-      this.inputNewTask.setFocus();
-      this.shouldFocus = false;
-      //TODO: Entender o que faz o detectChanges
-      this.cdRef.detectChanges();
-    }
-  }
-
   addNewTaskToColumn = ({ columnId }: { columnId: string }) => {
-    if (this.newTaskTitle.trim()) {
+    if (this.newTaskTitle.value) {
       const newTask: TaskType = {
         id: Date.now().toString(),
-        title: this.newTaskTitle,
+        title: this.newTaskTitle.value,
         description: '',
       };
       MOCK_DATA.find((column) => column.id === columnId)?.tasks.push(newTask);
-      this.newTaskTitle = '';
+      this.newTaskTitle.setValue('');
       this.showInput.set(false);
     } else {
       this.inputNewTask.setFocus();
@@ -100,7 +94,7 @@ export class BoardColumnComponent {
       !this.newTaskContainer.nativeElement.contains(event.target as Node)
     ) {
       this.showInput.set(false);
-      this.newTaskTitle = '';
+      this.newTaskTitle.setValue('');
     }
   }
   drop(event: CdkDragDrop<TaskType[]>) {

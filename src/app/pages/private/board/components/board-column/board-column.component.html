@@ -8,7 +8,10 @@
     </button>
   </header>
 
-  <div class="flex flex-col gap-y-2 pr-2">
+  <div
+    class="custom-scrollbar flex flex-col gap-y-2 overflow-y-auto pr-2 pl-px"
+    cdkDropList
+  >
     @for (task of columnData.tasks; track task.id) {
       <div cdkDrag>
         <div class="drag-card-placeholder" *cdkDragPlaceholder></div>
@@ -19,10 +22,12 @@
     @if (showInput()) {
       <div #newTaskContainer>
         <input-component
+          [focusOnInit]="true"
+          [control]="newTaskTitle"
+          (inputValueChange)="handleInputValueChange($event)"
           variant="large"
           placeholder="Insira um título"
         ></input-component>
-        <!-- [(ngModel)]="newTaskTitle" -->
         <div class="flex w-2/3 gap-x-2">
           <button-component
             class="w-full"

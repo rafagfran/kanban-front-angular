@@ -5,7 +5,7 @@ export const ButtonVariants = tv({
   variants: {
     variant: {
       default: 'bg-primary  hover:bg-primary/90  text-foreground-light',
-      outline: 'border border bg-background  hover:bg-primary-hover',
+      outline: 'border  bg-transparent ',
       secondary: 'bg-primary-hover text-muted-foreground hover:bg-secondary/80',
       ghost: 'hover:bg-white/10',
       dotted: 'border border-dotted  border-primary w-full',

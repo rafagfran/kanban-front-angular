@@ -31,6 +31,7 @@
 
   --spacing-board-column: 300px;
   --spacing-header: 64px;
+  --spacing-between-columns: 0.5rem;
 
   --radius-card: 0.5rem;
   --radius-column: 0.75rem;

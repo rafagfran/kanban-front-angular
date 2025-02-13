@@ -1,11 +1,12 @@
 import {
   Component,
   type ElementRef,
+  EventEmitter,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   type InputVariantTypes,
   InputVariants,
@@ -13,25 +14,32 @@ import {
 
 @Component({
   selector: 'input-component',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   template: `
     <input
       #inputRef
-      [(ngModel)]="inputValue"
       [class]="classes"
       [type]="inputType"
       [placeholder]="placeholder"
+      [formControl]="control"
+      (input)="onInputChange()"
     />
   `,
 })
 export class InputComponent {
   @ViewChild('inputRef') inputElement!: ElementRef<HTMLInputElement>;
-
-  @Output() inputValue = '';
+  @Input() focusOnInit = false;
   @Input() class = '';
   @Input() variant: InputVariantTypes['variant'];
   @Input() placeholder = '';
   @Input() inputType: 'text' | 'password' | 'email' = 'text';
+
+  @Input() control = new FormControl('');
+  @Output() inputValueChange = new EventEmitter<string>();
+
+  onInputChange() {
+    this.inputValueChange.emit(this.control.value ?? '');
+  }
 
   get classes() {
     return InputVariants({
@@ -42,5 +50,11 @@ export class InputComponent {
 
   setFocus() {
     this.inputElement?.nativeElement.focus();
+  }
+
+  ngAfterViewInit() {
+    if (this.focusOnInit) {
+      this.setFocus();
+    }
   }
 }
